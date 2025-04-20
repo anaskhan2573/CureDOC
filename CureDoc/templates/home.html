@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CureDoc | AI-Powered Medical Diagnosis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../static/index.css">
+</head>
+<body>
+  
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'">
+          <i class="fas fa-heartbeat logo-icon"></i>
+          <span class="logo-text">CureDoc</span>
+        </div>
+        <div class="nav-links">
+          <a href="Home.html" class="active">Home</a>
+          <a href="NeuroScan.html">NeuroScan</a>
+          <a href="index.html" class="cta-button">Try Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">AI-Powered Healthcare at Your Fingertips</h1>
+        <p class="hero-subtitle">CureDoc combines advanced artificial intelligence with medical expertise to provide instant, accurate health assessments and recommendations.</p>
+        <div class="hero-buttons">
+          <a href="chat.html" class="primary-btn">
+            <i class="fas fa-comment-medical"></i> Start Free Consultation
+          </a>
+          <a href="services.html" class="secondary-btn">Learn More</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="AI Doctor Consultation">
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">Advanced Medical AI Solutions</h2>
+      <p class="section-subtitle">CureDoc leverages cutting-edge technology to deliver healthcare solutions that are fast, accurate, and accessible.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <i class="fas fa-brain feature-icon"></i>
+          <h3 class="feature-title">Deep Learning Diagnosis</h3>
+          <p class="feature-desc">Our AI analyzes symptoms with 95% accuracy, drawing from millions of medical cases.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-image feature-icon"></i>
+          <h3 class="feature-title">Image Recognition</h3>
+          <p class="feature-desc">Upload medical images for instant analysis of skin conditions, X-rays, and more.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-clock feature-icon"></i>
+          <h3 class="feature-title">24/7 Availability</h3>
+          <p class="feature-desc">Get medical advice anytime, anywhere - no appointments needed.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-shield-alt feature-icon"></i>
+          <h3 class="feature-title">HIPAA-Compliant</h3>
+          <p class="feature-desc">Your health data is encrypted and protected with enterprise-grade security.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="container">
+      <h2 class="section-title" style="color: var(--white);">Trusted by Medical Professionals</h2>
+      <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">Join thousands of users who rely on CureDoc for accurate medical insights.</p>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">10K+</div>
+          <div class="stat-label">Daily Consultations</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">95%</div>
+          <div class="stat-label">Diagnosis Accuracy</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Medical Conditions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Availability</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">What Our Users Say</h2>
+      <p class="section-subtitle">Don't just take our word for it - hear from medical professionals and patients.</p>
+      <div class="testimonial-slider">
+        <div class="testimonial">
+          <div class="testimonial-text">
+            As an ER physician, I use CureDoc to quickly assess symptoms before patients arrive. The AI's accuracy is remarkable - it caught a rare condition that even experienced doctors might miss.
+          </div>
+          <div class="testimonial-author">
+            <div class="author-img">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Dr. James Wilson">
+            </div>
+            <div class="author-info">
+              <h4>Dr. James Wilson</h4>
+              <p>Emergency Physician</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <h2 class="cta-title">Ready to Experience AI-Powered Healthcare?</h2>
+      <div class="cta-buttons">
+        <a href="chat.html" class="cta-btn">Start Free Consultation</a>
+        <a href="contact.html" class="cta-btn outline-btn">Contact Our Team</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>CureDoc</h3>
+          <p>Revolutionizing healthcare through advanced AI diagnostics and telemedicine solutions.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul class="footer-links">
+            <li><a href="#">Symptom Checker</a></li>
+            <li><a href="#">Image Diagnosis</a></li>
+            <li><a href="#">Treatment Plans</a></li>
+            <li><a href="#">Health Monitoring</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Legal</h3>
+          <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">HIPAA Compliance</a></li>
+            <li><a href="#">Medical Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 CureDoc AI. All rights reserved. Developed by Singularity Team</p>
+      </div>
+    </div>
+  </footer>
+
+  <script href="../static/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroScan AI | Brain Tumor Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/NeuronScan.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <h1>NeuroScan <span>AI</span></h1>
+            </div>
+            <p class="tagline">Advanced brain tumor detection using deep learning</p>
+        </header>
+
+        <!-- Main Upload Area -->
+        <div class="upload-container">
+            <div class="upload-card" id="uploadArea">
+                <div class="upload-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h3>Upload Brain MRI Scan</h3>
+                <p class="upload-instructions">Drag & drop your DICOM or JPEG image here</p>
+                <div class="file-requirements">
+                    <p><i class="fas fa-check-circle"></i> Supports: .jpg, .png, .dcm</p>
+                    <p><i class="fas fa-check-circle"></i> Minimum resolution: 256x256</p>
+                </div>
+                <button class="btn primary" id="uploadBtn">
+                    <i class="fas fa-folder-open"></i> Browse Files
+                </button>
+                <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.dcm" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div class="loading-container" id="loadingIndicator">
+            <div class="loading-animation">
+                <div class="loading-spinner"></div>
+                <div class="loading-dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+            <h3>Analyzing Scan</h3>
+            <p class="loading-text">Processing image with our neural network...</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-container" id="resultContainer">
+            <div class="results-header">
+                <h2><i class="fas fa-clipboard-check"></i> Diagnosis Report</h2>
+                <div class="confidence-badge" id="confidenceBadge">
+                    <span id="confidenceValue">92%</span> Confidence
+                </div>
+            </div>
+
+            <div class="results-content">
+                <div class="image-preview">
+                    <div class="image-wrapper">
+                        <img id="previewImage" src="" alt="MRI Scan">
+                        <div class="image-overlay">
+                            <button class="btn icon-btn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="diagnosis-result">
+                    <div class="result-card" id="predictionCard">
+                        <div class="result-icon">
+                            <i class="fas fa-diagnoses"></i>
+                        </div>
+                        <div class="result-text">
+                            <h4>AI Diagnosis</h4>
+                            <div class="prediction" id="predictionResult">No Tumor Detected</div>
+                        </div>
+                    </div>
+
+                    <div class="result-details">
+                        <div class="detail-card">
+                            <h5><i class="fas fa-info-circle"></i> Clinical Notes</h5>
+                            <p id="clinicalNotes">The scan appears normal with no visible abnormalities.</p>
+                        </div>
+                        <div class="detail-card">
+                            <h5><i class="fas fa-chart-line"></i> Model Metrics</h5>
+                            <div class="metrics-grid">
+                                <div class="metric">
+                                    <span class="metric-label">Accuracy</span>
+                                    <span class="metric-value">94.2%</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Sensitivity</span>
+                                    <span class="metric-value">92.8%</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Specificity</span>
+                                    <span class="metric-value">95.1%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-actions">
+                <button class="btn secondary" id="analyzeAnother">
+                    <i class="fas fa-redo"></i> Analyze Another
+                </button>
+                <button class="btn primary" id="downloadReport">
+                    <i class="fas fa-file-pdf"></i> Download Full Report
+                </button>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-container">
+            <h2><i class="fas fa-star"></i> Why Choose NeuroScan AI?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4>Rapid Analysis</h4>
+                    <p>Get results in seconds with our optimized deep learning models</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h4>High Accuracy</h4>
+                    <p>94%+ accuracy validated on clinical datasets</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Secure & Private</h4>
+                    <p>All analyses are HIPAA compliant and encrypted</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+            const uploadBtn = document.getElementById('uploadBtn');
+            const resultContainer = document.getElementById('resultContainer');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const previewImage = document.getElementById('previewImage');
+            const predictionResult = document.getElementById('predictionResult');
+            const confidenceValue = document.getElementById('confidenceValue');
+            const confidenceBadge = document.getElementById('confidenceBadge');
+            const clinicalNotes = document.getElementById('clinicalNotes');
+            const analyzeAnotherBtn = document.getElementById('analyzeAnother');
+            const progressFill = document.getElementById('progressFill');
+            
+            // Drag and Drop Handlers
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, highlight, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, unhighlight, false);
+            });
+
+            function highlight() {
+                uploadArea.classList.add('highlight');
+            }
+
+            function unhighlight() {
+                uploadArea.classList.remove('highlight');
+            }
+
+            // Handle dropped files
+            uploadArea.addEventListener('drop', function(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                if (files.length) {
+                    handleFileUpload(files[0]);
+                }
+            });
+
+            // Handle file selection
+            uploadBtn.addEventListener('click', function() {
+                fileInput.click();
+            });
+
+            fileInput.addEventListener('change', function() {
+                if (fileInput.files.length) {
+                    handleFileUpload(fileInput.files[0]);
+                }
+            });
+
+            // Analyze another image
+            analyzeAnotherBtn.addEventListener('click', function() {
+                resultContainer.style.display = 'none';
+                uploadArea.style.display = 'block';
+                fileInput.value = '';
+            });
+
+            // File upload handler
+            function handleFileUpload(file) {
+                if (!file.type.match('image.*') && !file.name.endsWith('.dcm')) {
+                    showError('Please upload a valid image file (JPEG, PNG, or DICOM)');
+                    return;
+                }
+
+                // Show loading state
+                uploadArea.style.display = 'none';
+                loadingIndicator.style.display = 'block';
+                resultContainer.style.display = 'none';
+                
+                // Simulate progress (replace with actual upload progress)
+                let progress = 0;
+                const progressInterval = setInterval(() => {
+                    progress += Math.random() * 10;
+                    if (progress > 100) progress = 100;
+                    progressFill.style.width = `${progress}%`;
+                    
+                    if (progress === 100) {
+                        clearInterval(progressInterval);
+                    }
+                }, 200);
+
+                // Create FormData and send to server
+                const formData = new FormData();
+                formData.append('file', file);
+
+                fetch('/classify', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Server error: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.error) {
+                        throw new Error(data.error);
+                    }
+                    
+                    // Display results
+                    previewImage.src = `data:image/jpeg;base64,${data.image}`;
+                    predictionResult.textContent = data.prediction;
+                    confidenceValue.textContent = `${data.confidence}%`;
+                    clinicalNotes.textContent = getClinicalNotes(data.prediction, data.confidence);
+                    
+                    // Set appropriate styling
+                    if (data.prediction === 'Tumor') {
+                        document.getElementById('predictionCard').classList.add('tumor-result');
+                        confidenceBadge.classList.add('tumor-badge');
+                    } else {
+                        document.getElementById('predictionCard').classList.add('healthy-result');
+                        confidenceBadge.classList.add('healthy-badge');
+                    }
+                    
+                    // Show results
+                    loadingIndicator.style.display = 'none';
+                    resultContainer.style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    loadingIndicator.style.display = 'none';
+                    uploadArea.style.display = 'block';
+                    showError(error.message);
+                });
+            }
+
+            // Helper functions
+            function showError(message) {
+                alert('Error: ' + message);
+            }
+
+            function getClinicalNotes(prediction, confidence) {
+                if (prediction === 'Tumor') {
+                    if (confidence > 90) {
+                        return 'High confidence detection of abnormal tissue growth. Recommend immediate consultation with a neurosurgeon.';
+                    } else if (confidence > 75) {
+                        return 'Suspicious tissue detected. Recommend follow-up MRI and specialist consultation.';
+                    } else {
+                        return 'Potential abnormality detected. Recommend additional imaging for confirmation.';
+                    }
+                } else {
+                    if (confidence > 90) {
+                        return 'No abnormalities detected. Brain structures appear normal.';
+                    } else if (confidence > 75) {
+                        return 'No significant abnormalities detected. Minor variations within normal limits.';
+                    } else {
+                        return 'No definitive abnormalities detected. Consider clinical correlation.';
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CureBot - AI Medical Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='chat.css') }}">
+
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <i class="fas fa-stethoscope"></i>
+      <h1>CureBot</h1>
+    </div>
+    
+    <button class="new-chat-btn" onclick="startNewChat()">
+      <i class="fas fa-plus"></i> New Chat
+    </button>
+    
+    <div class="history-title">Recent Conversations</div>
+    <div id="chat-history-container"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Mobile Toggle Button -->
+    <div class="sidebar-toggle" onclick="toggleSidebar()">
+      <div class="hamburger"></div>
+      <div class="hamburger"></div>
+      <div class="hamburger"></div>
+    </div>
+
+    <!-- Chat Container -->
+    <div class="chat-container" id="chat-box">
+      <!-- Welcome Message -->
+      <div class="welcome-message" id="welcome-message">
+        <h2>Welcome to CureBot</h2>
+        <p>Your AI-powered medical assistant. Ask about symptoms, upload medical images, or describe your health concerns.</p>
+        
+        <div class="welcome-features">
+          <div class="feature-card">
+            <i class="fas fa-comment-medical"></i>
+            <h4>Symptom Analysis</h4>
+            <p>Describe your symptoms and get potential causes</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-image"></i>
+            <h4>Image Diagnosis</h4>
+            <p>Upload medical images for preliminary analysis</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-prescription-bottle-alt"></i>
+            <h4>Treatment Advice</h4>
+            <p>Get recommendations for medications and care</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-file-medical"></i>
+            <h4>PDF Reports</h4>
+            <p>Download detailed reports of your consultations</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Messages will be inserted here dynamically -->
+    </div>
+
+    <!-- Image Preview Container -->
+    <div class="image-preview-container" id="image-preview-container">
+      <img id="image-preview" src="#" alt="Preview">
+      <div class="prompt-container" id="prompt-container">
+        <p>Add specific instructions for analysis (optional):</p>
+        <textarea id="custom-prompt" placeholder="Example: 'Please check for signs of pneumonia in this chest X-ray'"></textarea>
+        <div class="upload-actions">
+          <button class="action-btn secondary" id="cancel-upload" onclick="cancelImageUpload()">
+            <i class="fas fa-times"></i>
+          </button>
+          <button class="action-btn" id="submit-upload" onclick="submitImageForAnalysis()">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading" class="loading">
+      <div class="thinking">Analyzing</div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="input-container">
+      <input type="text" id="query" placeholder="Ask a medical question or describe symptoms..." 
+             onfocus="removeWelcomeMessage()" onkeydown="handleKeyDown(event)">
+      
+      <input type="file" id="image-upload" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+      <button class="action-btn secondary" onclick="document.getElementById('image-upload').click()" title="Upload image">
+        <i class="fas fa-image"></i>
+      </button>
+      
+      <button class="action-btn secondary" onclick="startSpeechRecognition()" title="Voice input">
+        <i class="fas fa-microphone"></i>
+      </button>
+      
+      <button class="action-btn" onclick="askQuery()" title="Send message">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+
+    <!-- Report Download Section -->
+    <div class="report-section" id="report-section">
+      <button class="download-btn" id="download-report-btn">
+        <i class="fas fa-file-pdf"></i> Download Medical Report
+      </button>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+
+</body>
+</html>
